@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'europe/Minsk'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
