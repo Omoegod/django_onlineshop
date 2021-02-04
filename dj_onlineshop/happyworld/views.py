@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-
+from happyworld.models import Author
+from django.http import HttpResponse
 # Create your views here.
 
-class HomePageView(TemplateView):
-    template_name = 'happyworld/home.html'
+
+def home_page(request):
+    authors_name = Author.objects.all()
+    context = {"authors_name" : authors_name}
+    return render(request, template_name='home.html', context=context)

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Книжный интернет-магазин</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="top-menu-wrapper">
+      <div class="top-menu">
+        <ul class="horizontal-menu" id="">
+          <li class="current">
+            <a href="/">Главная</a>
+          </li>
+          <li>
+            <a href="/delivery">Доставка</a>
+          </li>
+          <li>
+            <a href="/pay">Оплата</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <h1>Hello World!</h1>
+    {% for author in authors_name %}
+    {{ author.name_author}} | {{ author.descriptions}}<br>
+    {% endfor %}
+</body>
+</html>
