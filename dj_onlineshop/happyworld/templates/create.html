@@ -27,9 +27,12 @@
       </div>
     </div>
   </div>
-    <h1>Hello World!</h1>
-    {% for author in authors_name %}
-    {{ author.name_author}} | {{ author.descriptions}}<br>
-    {% endfor %}
-</body>
+    <h1>Add Book</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="text" name="name_book" required><br>
+      <input type="text" name="descriptions_book"><br>
+      <button>Add</button>
+    </form>
+    </body>
 </html>

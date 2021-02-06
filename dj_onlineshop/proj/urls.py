@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from happyworld.views import home_page
+from happyworld import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page)
+    path('', views.home_page),
+    path('books/', views.book_list, name='books-list'),
+    path('books/<int:pk>/', views.books_detail, name='book-detail'),
+    path('book-delete/<int:pk>/', views.books_delete, name='book-delete'),
+    path('book-create/', views.book_create, name='book-create')
 ]

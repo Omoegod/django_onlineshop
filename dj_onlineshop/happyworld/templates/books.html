@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Книжный интернет-магазин</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="top-menu-wrapper">
+      <div class="top-menu">
+        <ul class="horizontal-menu" id="">
+          <li class="current">
+            <a href="/">Главная</a>
+          </li>
+          <li>
+            <a href="/delivery">Доставка</a>
+          </li>
+          <li>
+            <a href="/pay">Оплата</a>
+          </li>
+          <li>
+            <a href="/books">Каталог книг</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <h1>Hello World!</h1>
+    <table border="1">
+      <tr>
+        <td>#</td>
+        <td>Name book</td>
+        <td>Description</td>
+        <td>Author</td>
+        <td>Genre</td>
+        <td>Series</td>
+        <td>Publishing</td>
+        <td>Year publishing</td>
+        <td>Number of pages</td>
+        <td>Created</td>
+        <td>Updated</td>
+        <td>actions</td>
+      </tr>
+    {% for book in name_book %}
+      <tr>
+        <td>{{ book.pk }}</td>
+        <td><a href="{% url 'book-detail' book.pk %}">{{ book.name_book }}</a></td>
+        <td>{{ book.description_book }}</td>
+        <td>{{ book.author_book }}</td>
+        <td>{{ book.genre_book }}</td>
+        <td>{{ book.series_book }}</td>
+        <td>{{ book.publishing_book }}</td>
+        <td>{{ book.year_publishing }}</td>
+        <td>{{ book.number_of_pages }}</td>
+        <td>{{ book.created }}</td>
+        <td>{{ book.updated }}</td>
+        <td><a href="{% url 'book-delete' book.pk %}">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+  <a href="{% url 'book-create' %}">Add Book</a>
+</body>
+</html>

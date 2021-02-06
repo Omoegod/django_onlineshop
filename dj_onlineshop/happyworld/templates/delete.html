@@ -27,9 +27,7 @@
       </div>
     </div>
   </div>
-    <h1>Hello World!</h1>
-    {% for author in authors_name %}
-    {{ author.name_author}} | {{ author.descriptions}}<br>
-    {% endfor %}
-</body>
+    <h1>{{ message }}</h1>
+    <a href="{% url 'books-list' %}">All books</a><br>
+    </body>
 </html>
