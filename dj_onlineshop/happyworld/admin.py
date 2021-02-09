@@ -23,7 +23,8 @@ class BookAdmin(admin.ModelAdmin):
 class GenreAdmin(admin.ModelAdmin):
     list_display = [
         'pk',
-        'name_genre']
+        'name_genre',
+        'descriptions_genre']
 
 class SeriesAdmin(admin.ModelAdmin):
     list_display = [
@@ -38,7 +39,8 @@ class PublishingAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = [
         'pk',
-        'name_author']
+        'name_author',
+        'descriptions_author']
 
 admin.site.register(models.Book, BookAdmin)
 admin.site.register(models.Genre, GenreAdmin)

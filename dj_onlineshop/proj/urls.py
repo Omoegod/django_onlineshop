@@ -20,9 +20,10 @@ from happyworld import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page),
-    path('books/', views.book_list, name='books-list'),
-    path('books/<int:pk>/', views.books_detail, name='book-detail'),
-    path('book-delete/<int:pk>/', views.books_delete, name='book-delete'),
-    path('book-create/', views.book_create, name='book-create')
+    path('', views.HomePage.as_view()),
+    path('books/', views.BookList.as_view(), name='books-list'),
+    path('books/<int:pk>/', views.BookDetail.as_view(), name='book-detail'),
+    path('book-delete/<int:pk>/', views.BookDelete.as_view(), name='book-delete'),
+    path('book-update/<int:pk>/', views.BookUpdate.as_view(), name='book-update'),
+    path('book-create/', views.BookCreate.as_view(), name='book-create')
 ]

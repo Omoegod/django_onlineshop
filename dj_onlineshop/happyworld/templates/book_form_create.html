@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Книжный интернет-магазин</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -28,11 +31,11 @@
     </div>
   </div>
     <h1>Add Book</h1>
-    <form action="" method="post">
-      {% csrf_token %}
-      <input type="text" name="name_book" required><br>
-      <input type="text" name="descriptions_book"><br>
-      <button>Add</button>
+    {% block content %}
+    <form action="" method="post"> {% csrf_token %}
+      {{ form.as_p }}<br>
+        <button type="submit">Add</button>
+    {% endblock %}
     </form>
     </body>
 </html>

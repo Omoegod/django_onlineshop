@@ -5,26 +5,30 @@ class Author(models.Model):
     name_author = models.CharField(
         verbose_name="Name author", 
         max_length=30)
-    descriptions = models.TextField(
+    descriptions_author = models.TextField(
         verbose_name="Descriptions Author",
         null=True, 
         blank=True)
     
     def __str__(self):
-        return self.name_author
+        return f'{self.name_author} {self.descriptions_author}'
 
 class Genre(models.Model):
     name_genre = models.CharField(
         verbose_name="Name genre", 
-        max_length=30)
+        max_length=50)
+    descriptions_genre = models.TextField(
+        verbose_name="Descriptions Author",
+        null=True, 
+        blank=True)    
     
     def __str__(self):
-        return self.name_genre
+        return f'{self.name_genre} {self.descriptions_genre}'
         
 class Series(models.Model):
     name_series = models.CharField(
         verbose_name="Name series", 
-        max_length=30)
+        max_length=50)
 
     def __str__(self):
         return self.name_series
@@ -43,6 +47,7 @@ class Book(models.Model):
         max_length=100)
     descriptions_book = models.TextField(
         verbose_name="Descriptions book",
+        max_length=1000,
         null=True, 
         blank=True)     
     author_book = models.ForeignKey(
