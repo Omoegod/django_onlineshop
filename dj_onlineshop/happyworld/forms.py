@@ -30,3 +30,18 @@ class BookFormUpdate(forms.ModelForm):
             'number_of_pages'
             ]
                         
+class AuthorFormCreate(forms.ModelForm):
+    class Meta:
+        model = models.Author
+        fields = [
+            'name_author',
+            'descriptions_author', 
+            ]
+
+class AuthorFormUpdate(forms.ModelForm):
+    class Meta:
+        model = models.Author
+        fields = [
+            'name_author',
+            'descriptions_author', 
+            ]
