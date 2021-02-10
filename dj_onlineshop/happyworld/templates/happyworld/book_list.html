@@ -36,24 +36,26 @@
       </div>
     </div>
   </nav>
-    <table border="1">
+    <table class="table">
+      <thead class="thead-dark">
       <tr>
-        <td>#</td>
-        <td>Name book</td>
-        <td>Description</td>
-        <td>Author</td>
-        <td>Genre</td>
-        <td>Series</td>
-        <td>Publishing</td>
-        <td>Year publishing</td>
-        <td>Number of pages</td>
-        <td>Created</td>
-        <td>Updated</td>
-        <td>actions</td>
+        <th scope="row">#</th>
+        <th scope="row">Name book</th>
+        <th scope="row">Description</th>
+        <th scope="row">Author</th>
+        <th scope="row">Genre</th>
+        <th scope="row">Series</th>
+        <th scope="row">Publishing</th>
+        <th scope="row">Year publishing</th>
+        <th scope="row">Number of pages</th>
+        <th scope="row">Created</th>
+        <th scope="row">Updated</th>
+        <th scope="row">actions</th>
       </tr>
+    </thead>
     {% for book in object_list %}
       <tr>
-        <td>{{ book.pk }}</td>
+        <th scope="row">{{ book.pk }}</th>
         <td><a href="{% url 'book-detail' book.pk %}">{{ book.name_book }}</a></td>
         <td>{{ book.descriptions_book }}</td>
         <td>{{ book.author_book }}</td>
@@ -70,6 +72,6 @@
       </tr>
     {% endfor %}
   </table>
-  <a href="{% url 'book-create' %}">Add Book</a>
+  <button type="button" class="btn btn-primary"><a href="{% url 'book-create' %}"></a>Add Book</button>
 </body>
 </html>
