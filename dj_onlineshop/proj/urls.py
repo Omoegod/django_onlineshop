@@ -31,4 +31,9 @@ urlpatterns = [
     path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author-delete'),
     path('author-update/<int:pk>/', views.AuthorUpdate.as_view(), name='author-update'),
     path('author-create/', views.AuthorCreate.as_view(), name='author-create'),
+    path('genres/', views.GenreList.as_view(), name='genres-list'),
+    path('genre/<int:pk>/', views.GenreDetail.as_view(), name='genre-detail'),
+    path('genre-delete/<int:pk>/', views.GenreDelete.as_view(), name='genre-delete'),
+    path('genre-update/<int:pk>/', views.GenreUpdate.as_view(), name='genre-update'),
+    path('genre-create/', views.GenreCreate.as_view(), name='genre-create')
 ]

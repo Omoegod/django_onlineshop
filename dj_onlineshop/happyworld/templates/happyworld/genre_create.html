@@ -39,10 +39,12 @@
       </div>
     </div>
   </nav>
-  <h1>Delete Book!</h1>
-     <form action="" method="POST">
-      {% csrf_token %}
-      <Button>Are you sure!</Button>
-      </form>   
+    <h1>Add Genre</h1>
+    {% block content %}
+    <form action="" method="post"> {% csrf_token %}
+      {{ form.as_p }}<br>
+        <button type="submit">Add</button>
+    {% endblock %}
+    </form>
     </body>
 </html>

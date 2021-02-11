@@ -28,6 +28,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/authors">Авторы</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/genres">Жанры</a>
+          </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -50,12 +53,12 @@
         <th scope="row">{{ author.pk }}</th>
         <td><a href="{% url 'author-detail' author.pk %}">{{ author.name_author }}</a></td>
         <td>{{ author.descriptions_author }}</td>
-        <td><a href="{% url 'author-delete' author.pk %}"><button type="submit" value="Text">DEL</button></a>
-            <a href="{% url 'author-update' author.pk %}"><Button type="submit" value="EDIT">EDIT</Button></a>
+        <td><a href="{% url 'author-delete' author.pk %}"><button type="button" class="btn btn-outline-danger">DEL</button></a>
+            <a href="{% url 'author-update' author.pk %}"><button type="button" class="btn btn-outline-info">EDIT</button></a>
           </td>
       </tr>
     {% endfor %}
   </table>
-  <button type="button" class="btn btn-primary"><a href="{% url 'author-create' %}"></a>Add Author</button>
+  <a href="{% url 'author-create' %}"><button type="button" class="btn btn-primary">Add Author</button></a>
 </body>
 </html>

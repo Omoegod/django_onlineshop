@@ -28,6 +28,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/authors">Авторы</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/genres">Жанры</a>
+          </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -66,12 +69,12 @@
         <td>{{ book.number_of_pages }}</td>
         <td>{{ book.created }}</td>
         <td>{{ book.updated }}</td>
-        <td><a href="{% url 'book-delete' book.pk %}"><button type="submit" value="Text">DEL</button></a>
-            <a href="{% url 'book-update' book.pk %}"><Button type="submit" value="EDIT">EDIT</Button></a>
+        <td><a href="{% url 'book-delete' book.pk %}"><button type="button" class="btn btn-outline-danger">DEL</button></a>
+            <a href="{% url 'book-update' book.pk %}"><button type="button" class="btn btn-outline-info">EDIT</button></a>
           </td>
       </tr>
     {% endfor %}
   </table>
-  <button type="button" class="btn btn-primary"><a href="{% url 'book-create' %}"></a>Add Book</button>
+  <a href="{% url 'book-create' %}"><button type="button" class="btn btn-primary">Add Book</button></a>
 </body>
 </html>

@@ -39,10 +39,9 @@
       </div>
     </div>
   </nav>
-  <h1>Delete Book!</h1>
-     <form action="" method="POST">
-      {% csrf_token %}
-      <Button>Are you sure!</Button>
-      </form>   
-    </body>
+    <h1>Genre name {{ object.name_genre }}</h1>
+    <a href="{% url 'genres-list' %}">All genres</a><br>
+    {{ object.descriptions_genre }} <br>
+    
+</body>
 </html>

@@ -53,4 +53,25 @@ class AuthorUpdate(UpdateView):
     form_class = forms.AuthorFormUpdate 
     template_name_suffix = '_update'
 
+class GenreList(ListView):
+    model = Genre
+
+class GenreDetail(DetailView):
+    model = Genre
+
+class GenreDelete(DeleteView):
+    model = Genre
+    success_url = reverse_lazy('genres-list')
+
+class GenreCreate(CreateView):
+    model = Genre
+    success_url = reverse_lazy('genres-list')
+    form_class = forms.GenreFormCreate
+    template_name_suffix = '_create'
+
+class GenreUpdate(UpdateView):
+    model = Genre   
+    success_url = reverse_lazy('genres-list')
+    form_class = forms.GenreFormUpdate 
+    template_name_suffix = '_update'
 

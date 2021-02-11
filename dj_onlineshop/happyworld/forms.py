@@ -45,3 +45,19 @@ class AuthorFormUpdate(forms.ModelForm):
             'name_author',
             'descriptions_author', 
             ]
+
+class GenreFormCreate(forms.ModelForm):
+    class Meta:
+        model = models.Genre
+        fields = [
+            'name_genre',
+            'descriptions_genre', 
+            ]
+
+class GenreFormUpdate(forms.ModelForm):
+    class Meta:
+        model = models.Genre
+        fields = [
+            'name_genre',
+            'descriptions_genre', 
+            ]

@@ -11,7 +11,7 @@ class Author(models.Model):
         blank=True)
     
     def __str__(self):
-        return f'{self.name_author} {self.descriptions_author}'
+        return f'{self.name_author}'
 
 class Genre(models.Model):
     name_genre = models.CharField(
@@ -23,7 +23,7 @@ class Genre(models.Model):
         blank=True)    
     
     def __str__(self):
-        return f'{self.name_genre} {self.descriptions_genre}'
+        return f'{self.name_genre}'
         
 class Series(models.Model):
     name_series = models.CharField(
