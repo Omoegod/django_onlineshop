@@ -1,50 +1,14 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <title>Книжный интернет-магазин</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
-  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-</head>
-<body>
-  <h1>Hello World!</h1>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">BOOK-Shop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/books">Каталог книг</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/authors">Авторы</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/genres">Жанры</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Поиск</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+{% block title %} 
+{{ page_title }} 
+{% endblock title %}
+
+{% block main %}
     <h1>Add Genre</h1>
-    {% block content %}
     <form action="" method="post"> {% csrf_token %}
-      {{ form.as_p }}<br>
-        <button type="submit">Add</button>
-    {% endblock %}
+      {{ form|crispy }}<br>
+        <button type="submit" class="btn btn-block">Add</button>
     </form>
-    </body>
-</html>
+{% endblock main %}

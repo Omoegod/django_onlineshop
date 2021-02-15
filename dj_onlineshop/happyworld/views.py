@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
+from django.contrib.auth.views import LoginView
 from happyworld import forms
-from happyworld.models import *
+from happyworld.models.reference import Book, Author, Genre 
+from happyworld.models.users import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -75,3 +78,22 @@ class GenreUpdate(UpdateView):
     form_class = forms.GenreFormUpdate 
     template_name_suffix = '_update'
 
+class SignUpView(CreateView):
+    model = User
+    form_class = forms.SingUpForm
+    success_url = reverse_lazy('home')
+    template_name = 'register.html'
+
+class Login(LoginView):
+    model = User
+    form_class = forms.LoginForm
+    success_url = reverse_lazy('home')
+    template_name = 'login.html'
+
+class ProfileDetail(DetailView):
+    model = User
+    template_name = 'account_detail.html'
+    def get_object(self, queryset=None):
+        return self.request.user
+   
+    

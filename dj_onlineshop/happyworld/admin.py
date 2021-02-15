@@ -1,5 +1,5 @@
 from django.contrib import admin
-from happyworld import models
+from happyworld.models import reference
 
 class BookAdmin(admin.ModelAdmin):
     search_fields = [
@@ -42,9 +42,9 @@ class AuthorAdmin(admin.ModelAdmin):
         'name_author',
         'descriptions_author']
 
-admin.site.register(models.Book, BookAdmin)
-admin.site.register(models.Genre, GenreAdmin)
-admin.site.register(models.Series, SeriesAdmin)
-admin.site.register(models.Publishing, PublishingAdmin)
-admin.site.register(models.Author, AuthorAdmin)
+admin.site.register(reference.Book, BookAdmin)
+admin.site.register(reference.Genre, GenreAdmin)
+admin.site.register(reference.Series, SeriesAdmin)
+admin.site.register(reference.Publishing, PublishingAdmin)
+admin.site.register(reference.Author, AuthorAdmin)
 

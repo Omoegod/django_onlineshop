@@ -1,10 +1,32 @@
 from django import forms
-from happyworld import models
+from happyworld.models import reference, users
 from django.db.models import fields
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+class SingUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2'            
+        ]
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'password1'
+        ]
 
 class BookFormCreate(forms.ModelForm):
     class Meta:
-        model = models.Book
+        model = reference.Book
         fields = [
             'name_book',
             'descriptions_book', 
@@ -18,7 +40,7 @@ class BookFormCreate(forms.ModelForm):
 
 class BookFormUpdate(forms.ModelForm):
     class Meta:
-        model = models.Book
+        model = reference.Book
         fields = [
             'name_book',
             'descriptions_book', 
@@ -32,7 +54,7 @@ class BookFormUpdate(forms.ModelForm):
                         
 class AuthorFormCreate(forms.ModelForm):
     class Meta:
-        model = models.Author
+        model = reference.Author
         fields = [
             'name_author',
             'descriptions_author', 
@@ -40,7 +62,7 @@ class AuthorFormCreate(forms.ModelForm):
 
 class AuthorFormUpdate(forms.ModelForm):
     class Meta:
-        model = models.Author
+        model = reference.Author
         fields = [
             'name_author',
             'descriptions_author', 
@@ -48,7 +70,7 @@ class AuthorFormUpdate(forms.ModelForm):
 
 class GenreFormCreate(forms.ModelForm):
     class Meta:
-        model = models.Genre
+        model = reference.Genre
         fields = [
             'name_genre',
             'descriptions_genre', 
@@ -56,7 +78,7 @@ class GenreFormCreate(forms.ModelForm):
 
 class GenreFormUpdate(forms.ModelForm):
     class Meta:
-        model = models.Genre
+        model = reference.Genre
         fields = [
             'name_genre',
             'descriptions_genre', 

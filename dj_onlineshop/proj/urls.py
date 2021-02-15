@@ -17,10 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from happyworld import views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomePage.as_view()),
+    path('', views.HomePage.as_view(), name='home'),
     path('books/', views.BookList.as_view(), name='books-list'),
     path('books/<int:pk>/', views.BookDetail.as_view(), name='book-detail'),
     path('book-delete/<int:pk>/', views.BookDelete.as_view(), name='book-delete'),
@@ -35,5 +34,8 @@ urlpatterns = [
     path('genre/<int:pk>/', views.GenreDetail.as_view(), name='genre-detail'),
     path('genre-delete/<int:pk>/', views.GenreDelete.as_view(), name='genre-delete'),
     path('genre-update/<int:pk>/', views.GenreUpdate.as_view(), name='genre-update'),
-    path('genre-create/', views.GenreCreate.as_view(), name='genre-create')
+    path('genre-create/', views.GenreCreate.as_view(), name='genre-create'),
+    path('register/', views.SignUpView.as_view(), name='register'),
+    path('login/', views.Login.as_view(), name='login'),
+    path('user/', views.ProfileDetail.as_view(), name='profile'),
 ]
