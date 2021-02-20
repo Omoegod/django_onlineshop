@@ -22,21 +22,21 @@
         <th scope="row">actions</th>
       </tr>
     </thead>
-    {% for book in object_list %}
+    {% for product in object_list %}
       <tr>
-        <th scope="row">{{ book.pk }}</th>
-        <td><a href="{% url 'book-detail' book.pk %}">{{ book.name_book }}</a></td>
-        <td>{{ book.descriptions_book }}</td>
-        <td>{{ book.author_book }}</td>
-        <td>{{ book.genre_book }}</td>
-        <td>{{ book.series_book }}</td>
-        <td>{{ book.publishing_book }}</td>
-        <td>{{ book.year_publishing }}</td>
-        <td>{{ book.number_of_pages }}</td>
-        <td>{{ book.created }}</td>
-        <td>{{ book.updated }}</td>
-        <td><a href="{% url 'book-delete' book.pk %}"><button type="button" class="btn btn-outline-danger">DEL</button></a>
-            <a href="{% url 'book-update' book.pk %}"><button type="button" class="btn btn-outline-info">EDIT</button></a>
+        <th scope="row">{{ product.pk }}</th>
+        <td><a href="{% url 'book-detail' product.pk %}">{{ product.name_book }}</a></td>
+        <td>{{ product.descriptions_book }}</td>
+        <td>{{ product.author_book }}</td>
+        <td>{{ product.genre_book }}</td>
+        <td>{{ product.series_book }}</td>
+        <td>{{ product.publishing_book }}</td>
+        <td>{{ product.year_publishing }}</td>
+        <td>{{ product.number_of_pages }}</td>
+        <td>{{ product.created }}</td>
+        <td>{{ product.updated }}</td>
+        <td><a href="{% url 'book-delete' product.pk %}"><button type="button" class="btn btn-outline-danger">DEL</button></a>
+            <a href="{% url 'book-update' product.pk %}"><button type="button" class="btn btn-outline-info">EDIT</button></a>
           </td>
       </tr>
     {% endfor %}

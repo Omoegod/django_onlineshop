@@ -3,36 +3,14 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
 from django.contrib.auth.views import LoginView
 from happyworld import forms
-from happyworld.models.reference import Book, Author, Genre 
+from happyworld.models.reference import Author, Genre 
 from happyworld.models.users import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
 class HomePage(TemplateView):
     template_name = 'home.html'
-
-class BookList(ListView):
-    model = Book
-
-class BookDetail(DetailView):
-    model = Book
-
-class BookDelete(DeleteView):
-    model = Book
-    success_url = reverse_lazy('books-list')
-
-class BookCreate(CreateView):
-    model = Book
-    success_url = reverse_lazy('books-list')
-    form_class = forms.BookFormCreate
-    template_name_suffix = '_create'
-
-class BookUpdate(UpdateView):
-    model = Book   
-    success_url = reverse_lazy('books-list')
-    form_class = forms.BookFormUpdate 
-    template_name_suffix = '_update'
 
 class AuthorList(ListView):
     model = Author
