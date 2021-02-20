@@ -1,5 +1,5 @@
 from django.contrib import admin
-from happyworld.models import reference
+from references import models
 
 
 
@@ -26,8 +26,8 @@ class AuthorAdmin(admin.ModelAdmin):
         'descriptions_author']
 
 
-admin.site.register(reference.Genre, GenreAdmin)
-admin.site.register(reference.Series, SeriesAdmin)
-admin.site.register(reference.Publishing, PublishingAdmin)
-admin.site.register(reference.Author, AuthorAdmin)
+admin.site.register(models.Genre, GenreAdmin)
+admin.site.register(models.Series, SeriesAdmin)
+admin.site.register(models.Publishing, PublishingAdmin)
+admin.site.register(models.Author, AuthorAdmin)
 

@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
 from django.contrib.auth.views import LoginView
-from happyworld import forms
-from happyworld.models.reference import Author, Genre 
-from happyworld.models.users import User
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from references import forms
+from references.models import Author, Genre 
+from references.users import User
 
 
 # Create your views here.
@@ -18,21 +19,29 @@ class AuthorList(ListView):
 class AuthorDetail(DetailView):
     model = Author
 
-class AuthorDelete(DeleteView):
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
     model = Author
+    permission_required = 'references.delete_author'  
+    login_url = '/login/'
     success_url = reverse_lazy('authors-list')
 
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
     success_url = reverse_lazy('authors-list')
     form_class = forms.AuthorFormCreate
     template_name_suffix = '_create'
+    login_url = '/login/'
+    permission_required = 'references.add_author'  
 
-class AuthorUpdate(UpdateView):
+
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     model = Author   
     success_url = reverse_lazy('authors-list')
     form_class = forms.AuthorFormUpdate 
     template_name_suffix = '_update'
+    login_url = '/login/'
+    permission_required = 'references.change_author'  
+
 
 class GenreList(ListView):
     model = Genre
@@ -40,21 +49,27 @@ class GenreList(ListView):
 class GenreDetail(DetailView):
     model = Genre
 
-class GenreDelete(DeleteView):
+class GenreDelete(PermissionRequiredMixin, DeleteView):
     model = Genre
     success_url = reverse_lazy('genres-list')
+    login_url = '/login/'
+    permission_required = 'references.delete_author'  
 
-class GenreCreate(CreateView):
+class GenreCreate(PermissionRequiredMixin, CreateView):
     model = Genre
     success_url = reverse_lazy('genres-list')
     form_class = forms.GenreFormCreate
     template_name_suffix = '_create'
+    login_url = '/login/'
+    permission_required = 'references.add_author'  
 
-class GenreUpdate(UpdateView):
+class GenreUpdate(PermissionRequiredMixin, UpdateView):
     model = Genre   
     success_url = reverse_lazy('genres-list')
     form_class = forms.GenreFormUpdate 
     template_name_suffix = '_update'
+    login_url = '/login/'
+    permission_required = 'references.change_author'  
 
 class SignUpView(CreateView):
     model = User

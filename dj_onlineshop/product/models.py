@@ -14,25 +14,25 @@ class Product(models.Model):
         null=True, 
         blank=True)     
     author_book = models.ForeignKey(
-        'happyworld.Author',
+        'references.Author',
         on_delete=models.PROTECT,
         verbose_name="Автор",
         blank=True,
         null=True)
     genre_book = models.ForeignKey(
-        'happyworld.Genre',
+        'references.Genre',
         on_delete=models.PROTECT,
         verbose_name="Жанр",
         blank=True,
         null=True)
     series_book = models.ForeignKey(
-        'happyworld.Series',
+        'references.Series',
         on_delete=models.PROTECT,
         verbose_name="Серия",
         blank=True,
         null=True)
     publishing_book = models.ForeignKey(
-        'happyworld.Publishing',
+        'references.Publishing',
         on_delete=models.PROTECT,
         verbose_name="Издательство",
         blank=True,

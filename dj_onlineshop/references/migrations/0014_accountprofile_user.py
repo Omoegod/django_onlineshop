@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('happyworld', '0013_auto_20210207_1907'),
+        ('references', '0013_auto_20210207_1907'),
     ]
 
     operations = [
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AccountProfile',
             fields=[
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, primary_key=True, serialize=False, to='happyworld.user')),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, primary_key=True, serialize=False, to='references.user')),
                 ('first_name', models.CharField(blank=True, max_length=30, null=True, verbose_name='Фамилия')),
                 ('last_name', models.CharField(blank=True, max_length=30, null=True, verbose_name='Имя')),
                 ('email', models.CharField(help_text='Электронная почта', max_length=100)),
