@@ -10,4 +10,7 @@
     {{ object.last_name }} <br>
     {{ object.email }} <br>
     {{ object.phone_number }} <br>
+
+            <a href="{% url "logout" %}"><button type="button" class="btn btn-outline-info">Выйти из аккаунта</button></a>
+
 {% endblock main %}

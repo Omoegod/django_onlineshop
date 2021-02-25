@@ -15,15 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from product import views
-from django.conf import settings
-from django.conf.urls.static import static
+from profiles import views
 
 urlpatterns = [
-    path('books/', views.ProductList.as_view(), name='books-list'),
-    path('books/<int:pk>/', views.ProductDetail.as_view(), name='book-detail'),
-    path('book-delete/<int:pk>/', views.ProductDelete.as_view(), name='book-delete'),
-    path('book-update/<int:pk>/', views.ProductUpdate.as_view(), name='book-update'),
-    path('book-create/', views.ProductCreate.as_view(), name='book-create'),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
+    path('register/', views.SignUpView.as_view(), name='register'),
+    path('login/', views.Login.as_view(), name='login'),
+    path('user/', views.ProfileDetail.as_view(), name='profile'),
+    path('logout/', views.Logout_view.as_view(), name='logout'),
+]

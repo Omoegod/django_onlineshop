@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from references import forms
 from references.models import Author, Genre 
-from references.users import User
+
 
 
 # Create your views here.
@@ -71,22 +71,6 @@ class GenreUpdate(PermissionRequiredMixin, UpdateView):
     login_url = '/login/'
     permission_required = 'references.change_author'  
 
-class SignUpView(CreateView):
-    model = User
-    form_class = forms.SingUpForm
-    success_url = reverse_lazy('home')
-    template_name = 'register.html'
 
-class Login(LoginView):
-    model = User
-    form_class = forms.LoginForm
-    success_url = reverse_lazy('home')
-    template_name = 'login.html'
-
-class ProfileDetail(DetailView):
-    model = User
-    template_name = 'account_detail.html'
-    def get_object(self, queryset=None):
-        return self.request.user
    
     

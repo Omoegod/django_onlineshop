@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePage.as_view(), name='home'),
     path('', include('product.urls')),
+    path('', include('profiles.urls')),
     path('authors/', views.AuthorList.as_view(), name='authors-list'),
     path('author/<int:pk>/', views.AuthorDetail.as_view(), name='author-detail'),
     path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author-delete'),
@@ -31,7 +32,5 @@ urlpatterns = [
     path('genre-delete/<int:pk>/', views.GenreDelete.as_view(), name='genre-delete'),
     path('genre-update/<int:pk>/', views.GenreUpdate.as_view(), name='genre-update'),
     path('genre-create/', views.GenreCreate.as_view(), name='genre-create'),
-    path('register/', views.SignUpView.as_view(), name='register'),
-    path('login/', views.Login.as_view(), name='login'),
-    path('user/', views.ProfileDetail.as_view(), name='profile'),
+    
 ]

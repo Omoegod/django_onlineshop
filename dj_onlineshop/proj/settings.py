@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'references',
     'order',
-    'product'
+    'product',
+    'profiles'
 ]
 
 
@@ -126,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/omoegod/django_onlineshop/static'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/omoegod/django_onlineshop/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = "/user"
+LOGIN_REDIRECT_URL = '/user'
+LOGOUT_REDIRECT_URL = '/login'

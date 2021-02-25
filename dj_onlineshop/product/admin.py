@@ -21,20 +21,10 @@ class ProductAdmin(admin.ModelAdmin):
         'updated',] 
     class Meta:
         model = Product           
-
-class ProductImageAdmin(admin.ModelAdmin):
-    list_display =[
-        'pk',
-        'product',
-        'image',
-        'created',
-        'updated']    
-    class Meta:
-        model = ProductsImage   
+  
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductsImage, ProductImageAdmin)
 
 
 

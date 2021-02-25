@@ -5,9 +5,13 @@ class Product(models.Model):
     name_book = models.CharField(
         verbose_name="Название книги", 
         max_length=100)
+    photo = models.ImageField(
+        verbose_name="Фотография",
+        upload_to='uploads/')        
     price = models.IntegerField(
         verbose_name="Цена",
-        default=0)    
+        default=0,
+        blank=True)    
     descriptions_book = models.TextField(
         verbose_name="Описание книги",
         max_length=1000,
@@ -72,12 +76,8 @@ class Product(models.Model):
         default=True)
     quantity = models.IntegerField(
         verbose_name="Количество",
-        default=0)
-    # photo = models.OneToOneField(
-    #     ProductsImage, 
-    #     verbose_name="Фотография",
-    #     on_delete = models.PROTECT,
-    #     null=True)                      
+        blank=True,
+        default=0)                
     created = models.DateTimeField(
         verbose_name="Created date",
         auto_now=True,
@@ -90,22 +90,4 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name_book} {self.author_book} {self.genre_book} {self.series_book} {self.publishing_book}'
 
-class ProductsImage(models.Model):
-    product = models.ForeignKey(
-        Product,
-        blank=True,
-        null=True,
-        on_delete=models.PROTECT)
-    image = models.ImageField(
-        upload_to='image/')         
-    created = models.DateTimeField(
-        verbose_name="Created date",
-        auto_now=True,
-        auto_now_add=False)
-    updated = models.DateTimeField(
-        verbose_name="Updated date",
-        auto_now=False,
-        auto_now_add=True)                  
-    
-    def __str__(self):
-        return f'{self.product}'
+
