@@ -1,5 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -21,11 +24,7 @@ class Profile(models.Model):
         blank=True)    
     email = models.EmailField(
         max_length=100, 
-        help_text='Enter a valid email addres')
-    password1 = models.CharField(
-        max_length=30)
-    password2 = models.CharField(
-        max_length=30)         
+        help_text='Enter a valid email addres')      
     country = models.CharField(
         verbose_name="Страна",
         max_length=30,
@@ -62,4 +61,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.username}'
+
+    class Meta:
+        verbose_name = 'Профиль'
+        verbose_name_plural = 'Профиля'    
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(username=instance)
+
+@receiver
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
 

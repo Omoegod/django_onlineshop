@@ -10,6 +10,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = [
         'pk',
         'name_book',
+        'photo',
+        'price',
         'descriptions_book',
         'author_book',
         'genre_book',
@@ -17,6 +19,13 @@ class ProductAdmin(admin.ModelAdmin):
         'publishing_book',
         'year_publishing',
         'number_of_pages',
+        'binding',
+        'format_book',
+        'isbn',
+        'weight',
+        'age_restrictions',
+        'availability',
+        'quantity',
         'created',
         'updated',] 
     class Meta:

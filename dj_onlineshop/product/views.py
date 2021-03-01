@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class ProductList(ListView):
     model = Product
+    paginate_by = 20
 
 class ProductDetail(DetailView):
     model = Product
@@ -34,3 +35,14 @@ class ProductUpdate(PermissionRequiredMixin, UpdateView):
     template_name_suffix = '_update'
     permission_required = 'product.change_product'  
     login_url = '/login/'
+
+class Catalogue(ListView):
+    model = Product
+    template_name_suffix = '_catalogue'
+    paginate_by = 20 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = 'catalogue'
+        return context
+    

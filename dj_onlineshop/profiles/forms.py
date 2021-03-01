@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class SingUpForm(UserCreationForm):
+    password1 = forms.CharField(
+        max_length=30,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
+        )
+    password2 = forms.CharField(
+        max_length=30,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
+        )   
     class Meta:
         model = User
         fields = [

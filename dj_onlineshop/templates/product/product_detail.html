@@ -7,7 +7,7 @@
 {% block main %}
     <h1>Book name {{ object.name_book }}</h1>
     <a href="{% url 'books-list' %}">All books</a><br>
-    <img src="{{ object.photo.url }}" alt="">
+    <img src="{{ object.photo.url }}" class="img-thumbnail" alt="">
     {{ object.descriptions_book }} <br>
     {{ object.author_book }} <br>
     {{ object.genre_book }} <br>

@@ -10,6 +10,7 @@
       <tr>
         <th scope="row">#</th>
         <th scope="row">Название</th>
+        <th scope="row">Фото</th>
         <th scope="row">Описание</th>
         <th scope="row">Автор</th>
         <th scope="row">Жанр</th>
@@ -34,6 +35,7 @@
       <tr>
         <th scope="row">{{ product.pk }}</th>
         <td><a href="{% url 'book-detail' product.pk %}">{{ product.name_book }}</a></td>
+        <td>{{ product.photo }}</td>
         <td>{{ product.descriptions_book }}</td>
         <td>{{ product.author_book }}</td>
         <td>{{ product.genre_book }}</td>

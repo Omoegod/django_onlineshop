@@ -24,7 +24,6 @@ class Logout_view(LogoutView):
     redirect_field_name = settings.LOGOUT_REDIRECT_URL
     
 class ProfileDetail(LoginRequiredMixin, DetailView):
-    model = models.User
     template_name = 'account_detail.html'
-    def get_object(self, queryset=None):
-        return self.request.user
+    queryset = models.Profile.objects.all()
+    

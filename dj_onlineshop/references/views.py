@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
+
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from references import forms
 from references.models import Author, Genre 

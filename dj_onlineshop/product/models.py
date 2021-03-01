@@ -7,9 +7,12 @@ class Product(models.Model):
         max_length=100)
     photo = models.ImageField(
         verbose_name="Фотография",
-        upload_to='uploads/')        
-    price = models.IntegerField(
+        upload_to='uploads/',
+        blank=True)        
+    price = models.DecimalField(
         verbose_name="Цена",
+        max_digits=6,
+        decimal_places=2,
         default=0,
         blank=True)    
     descriptions_book = models.TextField(
@@ -59,8 +62,9 @@ class Product(models.Model):
         max_length=30,
         blank=True,
         null=True)
-    isbn = models.PositiveIntegerField(
+    isbn = models.CharField(
         verbose_name="ISBN",
+        max_length=50,
         blank=True,
         null=True)
     weight = models.PositiveIntegerField(
@@ -89,5 +93,6 @@ class Product(models.Model):
     
     def __str__(self):
         return f'{self.name_book} {self.author_book} {self.genre_book} {self.series_book} {self.publishing_book}'
+
 
 
