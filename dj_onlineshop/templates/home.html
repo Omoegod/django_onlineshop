@@ -7,18 +7,27 @@
 
 {% block main %}
 
-  <main>
-    <div class="card" style="width: 18rem;">
-  
-    <img class="card-img-top" src="{{ product.photo.url }}" alt="Card image cap">
-      <div class="card-body">
-      <h5 class="card-title">{{ product.name_book }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-      </div>
-     
+<h1 class="display-3">Новинки</h1>
+
+ {% for product in last_product %}
+    
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img class="img-thumbnail" src="{{ product.photo.url }}" alt="Card image cap">
     </div>
-  </main>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name_book }}</h5>
+        <p class="card-text">{{ product.price }}</p>
+        <p class="card-text"><small class="text-muted">{{ product.availability }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endfor %}
+
+
 
 
 {% endblock main %}

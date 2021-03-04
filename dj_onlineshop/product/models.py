@@ -8,7 +8,8 @@ class Product(models.Model):
     photo = models.ImageField(
         verbose_name="Фотография",
         upload_to='uploads/',
-        blank=True)        
+        blank=True,
+        max_length=200)        
     price = models.DecimalField(
         verbose_name="Цена",
         max_digits=6,

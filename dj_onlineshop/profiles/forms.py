@@ -1,7 +1,8 @@
 from django import forms
 from django.db.models import fields
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
+from profiles.models import Profile
 
 class SingUpForm(UserCreationForm):
     password1 = forms.CharField(
@@ -31,4 +32,18 @@ class LoginForm(AuthenticationForm):
             'password1'
         ]
 
-                       
+class ProfileUpdate(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email', 
+            'country', 
+            'city', 
+            'zip_code', 
+            'address_first', 
+            'address_second', 
+            'info',
+            ]                       

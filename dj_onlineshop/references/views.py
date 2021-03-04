@@ -1,9 +1,10 @@
-
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from references import forms
 from references.models import Author, Genre 
+from product.models import Product
 
 
 
@@ -11,7 +12,12 @@ from references.models import Author, Genre
 
 class HomePage(TemplateView):
     template_name = 'home.html'
-
+    def get(self, request):
+        last_product = Product.objects.order_by()[:5] 
+        context = {
+            'last_product':last_product
+        }   
+        return render(request, self.template_name, context)
 class AuthorList(ListView):
     model = Author
 

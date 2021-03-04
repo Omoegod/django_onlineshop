@@ -25,6 +25,6 @@ urlpatterns = [
     path('book-delete/<int:pk>/', views.ProductDelete.as_view(), name='book-delete'),
     path('book-update/<int:pk>/', views.ProductUpdate.as_view(), name='book-update'),
     path('book-create/', views.ProductCreate.as_view(), name='book-create'),
-    path('catalogue/', views.Catalogue.as_view(), name='catalogue'),
+    # path('catalogue/', views.Catalogue.as_view(), name='catalogue'),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     
