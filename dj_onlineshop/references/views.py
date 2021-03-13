@@ -15,11 +15,9 @@ class HomePage(TemplateView):
     def get(self, request):
         last_product = Product.objects.order_by('pk')[:5]
         category = Genre.objects.all()
-        authors = Author.objects.all() 
         context = {
             'last_product':last_product,
             'category':category,
-            'authors':authors,
         }   
         return render(request, self.template_name, context)
     

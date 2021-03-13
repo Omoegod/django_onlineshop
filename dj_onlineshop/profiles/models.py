@@ -27,7 +27,9 @@ class Profile(models.Model):
         help_text='Enter a valid email addres')      
     group_user = models.ForeignKey(
         Group,
-        on_delete=models.PROTECT,)    
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True)    
     country = models.CharField(
         verbose_name="Страна",
         max_length=30,
