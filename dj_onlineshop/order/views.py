@@ -1,99 +1,39 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, DeleteView, ListView, CreateView, TemplateView, UpdateView
-from django.contrib.auth.views import LoginView
-from happyworld import forms
-from happyworld.models.reference import Book, Author, Genre 
-from happyworld.models.users import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, DetailView
+from order.models import Cart, CartItem
+from product.models import Product
 
 # Create your views here.
 
-# class HomePage(TemplateView):
-#     template_name = 'home.html'
-
-# class BookList(ListView):
-#     model = Book
-
-# class BookDetail(DetailView):
-#     model = Book
-
-# class BookDelete(DeleteView):
-#     model = Book
-#     success_url = reverse_lazy('books-list')
-
-# class BookCreate(CreateView):
-#     model = Book
-#     success_url = reverse_lazy('books-list')
-#     form_class = forms.BookFormCreate
-#     template_name_suffix = '_create'
-
-# class BookUpdate(UpdateView):
-#     model = Book   
-#     success_url = reverse_lazy('books-list')
-#     form_class = forms.BookFormUpdate 
-#     template_name_suffix = '_update'
-
-# class AuthorList(ListView):
-#     model = Author
-
-# class AuthorDetail(DetailView):
-#     model = Author
-
-# class AuthorDelete(DeleteView):
-#     model = Author
-#     success_url = reverse_lazy('authors-list')
-
-# class AuthorCreate(CreateView):
-#     model = Author
-#     success_url = reverse_lazy('authors-list')
-#     form_class = forms.AuthorFormCreate
-#     template_name_suffix = '_create'
-
-# class AuthorUpdate(UpdateView):
-#     model = Author   
-#     success_url = reverse_lazy('authors-list')
-#     form_class = forms.AuthorFormUpdate 
-#     template_name_suffix = '_update'
-
-# class GenreList(ListView):
-#     model = Genre
-
-# class GenreDetail(DetailView):
-#     model = Genre
-
-# class GenreDelete(DeleteView):
-#     model = Genre
-#     success_url = reverse_lazy('genres-list')
-
-# class GenreCreate(CreateView):
-#     model = Genre
-#     success_url = reverse_lazy('genres-list')
-#     form_class = forms.GenreFormCreate
-#     template_name_suffix = '_create'
-
-# class GenreUpdate(UpdateView):
-#     model = Genre   
-#     success_url = reverse_lazy('genres-list')
-#     form_class = forms.GenreFormUpdate 
-#     template_name_suffix = '_update'
-
-# class SignUpView(CreateView):
-#     model = User
-#     form_class = forms.SingUpForm
-#     success_url = reverse_lazy('home')
-#     template_name = 'register.html'
-
-# class Login(LoginView):
-#     model = User
-#     form_class = forms.LoginForm
-#     success_url = reverse_lazy('home')
-#     template_name = 'login.html'
-
-# class ProfileDetail(DetailView):
-#     model = User
-#     template_name = 'account_detail.html'
-#     def get_object(self, queryset=None):
-#         return self.request.user
-   
-    
+class AddCartView(DetailView):
+    model = Cart
+    template_name = 'add_cart.html'
+    def get_object(self, *args, **kwargs):
+        product_id = self.request.GET.get('product')
+        if not product_id:
+            pass
+        else:
+            current_cart_pk = self.request.session.get('current_cart_pk')
+            current_user = self.request.user
+            if current_user.is_anonymous:
+                current_user = None
+            current_cart, created = Cart.objects.get_or_create( 
+                pk = current_cart_pk,
+                defaults={'user':current_user}
+            )
+            if created:
+                self.request.session['current_cart_pk'] = current_cart.pk
+                self.request.session['current_cart_pk']
+            product = Product.objects.get(pk=product_id)    
+            product_item, created = CartItem.objects.get_or_create(
+                cart = current_cart,
+                product = product,
+                defaults={
+                    'quantity':1,
+                    'price_sum': Product.price }
+            )
+            if not created:
+                product_item.quantity += 1
+                product_item.save()
+        return current_cart

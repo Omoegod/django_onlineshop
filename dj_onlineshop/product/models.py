@@ -78,7 +78,8 @@ class Product(models.Model):
         null=True)
     availability = models.BooleanField(
         verbose_name="Наличие товара",
-        default=True)
+        default=True,
+        )
     quantity = models.IntegerField(
         verbose_name="Количество",
         blank=True,

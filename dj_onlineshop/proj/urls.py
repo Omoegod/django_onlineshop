@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('', include('product.urls')),
     path('', include('profiles.urls')),
+    path('cart/', include('order.urls', namespace='cart')),
     path('authors/', views.AuthorList.as_view(), name='authors-list'),
     path('author/<int:pk>/', views.AuthorDetail.as_view(), name='author-detail'),
     path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author-delete'),

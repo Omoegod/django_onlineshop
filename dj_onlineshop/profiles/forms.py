@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from profiles.models import Profile
 
@@ -12,7 +12,15 @@ class SingUpForm(UserCreationForm):
     password2 = forms.CharField(
         max_length=30,
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
-        )   
+        )
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+            user.groups.add(Group.objects.get(name='Customers'))
+        return user
+
     class Meta:
         model = User
         fields = [

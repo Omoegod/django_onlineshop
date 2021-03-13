@@ -4,12 +4,12 @@ from django.views.generic import DetailView, DeleteView, ListView, CreateView, U
 from product.models import Product
 from product import forms
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
+from references.models import Author
 # Create your views here.
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 20
+    paginate_by = 10
     
 
 class ProductDetail(DetailView):
@@ -36,6 +36,23 @@ class ProductUpdate(PermissionRequiredMixin, UpdateView):
     template_name_suffix = '_update'
     permission_required = 'product.change_product'  
     login_url = '/login/'
+    
+
+class FilterProduct(DetailView):
+    model = Product, Author
+    # template_name = 'product/product_filter_author.html'
+    template_name = 'product/product_filter_genre.html'
+
+    def get(self, request):
+        # author_id = self.request.GET.get('author')
+        # sort_author = Product.objects.filter(author_book=author_id)   
+        genre_id = self.request.GET.get('genre')
+        sort_genre = Product.objects.filter(genre_book=genre_id)   
+        context = {
+            # 'sort_author':sort_author,            
+            'sort_genre':sort_genre,            
+        }   
+        return render(request, self.template_name, context)    
 
 
     

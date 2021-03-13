@@ -32,14 +32,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/genres">Жанры</a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="/register">Регистрация</a>
-          </li>
-          {% if is_user_logged_in %}
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="/login">Профиль</a>
+            <a class="nav-link" href="{% url 'profile' user.pk %}">Профиль</a>
           </li>
           {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Регистрация</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Войти в профиль</a>
           </li>

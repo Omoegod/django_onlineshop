@@ -13,10 +13,8 @@
     </div>
 {% endif %}
 
- 
-
  <div class="row">
-          {% for product in object_list %}
+          {% for product in sort_genre %}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <img class="card-img-top" height="350" src="{{ product.photo.url }}" alt="">

@@ -15,27 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from happyworld import views
+from order import views
+
+app_name = 'cart'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.HomePage.as_view(), name='home'),
-    # path('books/', views.BookList.as_view(), name='books-list'),
-    # path('books/<int:pk>/', views.BookDetail.as_view(), name='book-detail'),
-    # path('book-delete/<int:pk>/', views.BookDelete.as_view(), name='book-delete'),
-    # path('book-update/<int:pk>/', views.BookUpdate.as_view(), name='book-update'),
-    # path('book-create/', views.BookCreate.as_view(), name='book-create'),
-    # path('authors/', views.AuthorList.as_view(), name='authors-list'),
-    # path('author/<int:pk>/', views.AuthorDetail.as_view(), name='author-detail'),
-    # path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author-delete'),
-    # path('author-update/<int:pk>/', views.AuthorUpdate.as_view(), name='author-update'),
-    # path('author-create/', views.AuthorCreate.as_view(), name='author-create'),
-    # path('genres/', views.GenreList.as_view(), name='genres-list'),
-    # path('genre/<int:pk>/', views.GenreDetail.as_view(), name='genre-detail'),
-    # path('genre-delete/<int:pk>/', views.GenreDelete.as_view(), name='genre-delete'),
-    # path('genre-update/<int:pk>/', views.GenreUpdate.as_view(), name='genre-update'),
-    # path('genre-create/', views.GenreCreate.as_view(), name='genre-create'),
-    # path('register/', views.SignUpView.as_view(), name='register'),
-    # path('login/', views.Login.as_view(), name='login'),
-    # path('user/', views.ProfileDetail.as_view(), name='profile'),
+    path('add-to-cart/', views.AddCartView.as_view(), name='add-to-cart')
 ]

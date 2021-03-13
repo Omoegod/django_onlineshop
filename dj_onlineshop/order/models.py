@@ -1,41 +1,63 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from product.models import Product
 
-# Create your models here.
-# class Profile(models.Model):
-#     username = models.OneToOneField(
-#         User,
-#         on_delete=models.PROTECT,
-#         verbose_name="Имя пользователя", 
-#         max_length=30,
-#         primary_key=True)
-#     avatar = models.ImageField(
-#         verbose_name="Аватар",
-#         upload_to = "profile/",
-#         null=True, 
-#         blank=True)
-#     first_name = models.CharField(
-#         verbose_name="Фамилия",
-#         max_length=30,
-#         null=True, 
-#         blank=True)
-#     last_name = models.CharField(
-#         verbose_name="Имя",
-#         max_length=30,
-#         null=True, 
-#         blank=True)    
-#     email = models.EmailField(
-#         max_length=100, 
-#         help_text='Enter a valid email addres')
-#     password1 = models.CharField(
-#         max_length=30)
-#     password2 = models.CharField(
-#         max_length=30)       
-   
-#     def get_absolute_url(self):
-#         return reverse("user", kwargs={"pk": self.username.pk})
+User = get_user_model()
+
+class Cart(models.Model):
+    session = models.CharField(
+        verbose_name='Корзина пользователя',
+        max_length=500,
+        null=True,
+        blank=True,
+    )
+    user = models.ForeignKey(
+        User,
+        verbose_name='Покупатель',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+    )
+    accepted = models.BooleanField(
+        verbose_name='Принято к заказу',
+        default=False,
+    )
     
 
-#     def __str__(self):
-#         return f'{self.username}'
-
+class CartItem(models.Model):
+    cart = models.ForeignKey(
+        Cart,
+        verbose_name='Корзина',
+        on_delete=models.CASCADE,
+        related_name='cart_item',
+    )
+    product = models.ForeignKey(
+        Product,
+        verbose_name='Товар',
+        on_delete=models.CASCADE,       
+    )
+    quantity = models.PositiveIntegerField(
+        default = 1,
+    )    
+    price_sum = models.DecimalField(
+        verbose_name='Сумма товаров',
+        default=0,
+        max_digits=10,
+        decimal_places=2,
+    )
+    def save(self, *args, **kwargs):
+        self.price_sum = self.quantity * self.product.price
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return f'CartItem # {self.pk} {self.product.name_book} quantity {self.quantity}'
+    
+        
+class Order(models.Model):
+    cart = models.OneToOneField(
+        Cart,
+        verbose_name='Cart', 
+        on_delete=models.PROTECT)
+    address = models.TextField('Address')    
+    def __str__(self):
+        return f'order # {self.pk}'
+    
