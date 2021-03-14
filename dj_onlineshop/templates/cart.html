@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+{{ page_title }} 
+{% endblock title %}
+
+{% block main %}
+<h1>Корзина</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Товар</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Сумма</th>
+        </tr>    
+    </thead>
+    {% for product_item in object.cart_item.all %}
+        <tr>
+            <td>{{ product_item.product.name_book }}</td>
+            <td>{{ product_item.product.price }}</td>
+            <td><input type="number" name="" min='0' value="{{ product_item.quantity }}"></td>
+            <td>{{ product_item.price_sum }}</td>
+        </tr>    
+{% endfor %}
+        <tr>
+            <td colspan="3">Итоговая сумма</td>
+            <td colspan="3">Итоговая сумма</td>
+        </tr>
+</table>
+
+{% endblock main %}
+     
+    

@@ -20,5 +20,6 @@ from order import views
 app_name = 'cart'
 
 urlpatterns = [
-    path('add-to-cart/', views.AddCartView.as_view(), name='add-to-cart')
+    path('add-to-cart/', views.AddCartView.as_view(), name='add-to-cart'),
+    path('recalculate-cart/', views.EditCart.as_view(), name='recalculate-cart'),
 ]

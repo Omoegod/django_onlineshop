@@ -83,6 +83,7 @@ class Product(models.Model):
     quantity = models.IntegerField(
         verbose_name="Количество",
         blank=True,
+        null=True,
         default=0)                
     created = models.DateTimeField(
         verbose_name="Created date",
