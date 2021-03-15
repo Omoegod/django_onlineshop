@@ -5,7 +5,7 @@ class CartAdmin(admin.ModelAdmin):
     list_display = [
         'user',
         'accepted',
-        'total_sum',
+        'total_sum_cart',
     ]
     
     class Meta:
@@ -16,7 +16,7 @@ class CartItemAdmin(admin.ModelAdmin):
         'cart',
         'product',
         'quantity',
-        'price_sum']
+        'total_sum_item']
     
     class Meta:
         model = models.CartItem
@@ -25,5 +25,5 @@ class CartItemAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Cart, CartAdmin)
-admin.site.register(models.CartItem)
+admin.site.register(models.CartItem, CartItemAdmin)
 

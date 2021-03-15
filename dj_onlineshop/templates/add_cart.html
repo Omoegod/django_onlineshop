@@ -16,7 +16,7 @@
                 <th scope="col">Сумма</th>
             </tr>    
         </thead>
-        {% for product_item in object.products.all %}
+        {% for product_item in object.products_item.all %}
             <tr>
                 <td>{{ product_item.product.name_book }}</td>
                 <td>{{ product_item.product.price }}</td>

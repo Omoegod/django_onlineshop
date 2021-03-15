@@ -5,7 +5,7 @@ def update_items_in_cart(cart_items_from_form, current_cart_pk):
     cart = models.Cart.objects.filter(pk=current_cart_pk).first()
     if not cart:
         return
-    goods = cart.products.all()
+    goods = cart.products_item.all()
 
     for name, quantity in cart_items_from_form.items():
         if name == 'btn':

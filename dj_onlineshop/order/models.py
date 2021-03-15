@@ -22,22 +22,25 @@ class Cart(models.Model):
         verbose_name='Принято к заказу',
         default=False,
     )
-    total_sum = models.DecimalField(
+    total_sum_cart = models.DecimalField(
         verbose_name='Сумма',
         default=0,
         max_digits=10,
-        decimal_places=2,
-    )
+        decimal_places=2,    )
 
+    @property
     def total_sum(self):
-        all_item = self.products.all()
-        total = 0
+        all_item = self.products_item.all()
+        self.total_sum_cart = 0
         for product in all_item:
-            total += product.total_price()
-        return total
+            self.total_sum_cart += product.total_price
+            super().save()
+        return self.total_sum_cart
+        
+
 
     def __str__(self):
-        return self.pk
+        return f'{self.pk}'
 
 
 
@@ -46,7 +49,7 @@ class CartItem(models.Model):
         Cart,
         verbose_name='Корзина',
         on_delete=models.CASCADE,
-        related_name='products',
+        related_name='products_item',
     )
     product = models.ForeignKey(
         Product,
@@ -57,21 +60,21 @@ class CartItem(models.Model):
         'Количество',
         default = 1,
     )
-    price_sum = models.DecimalField(
+    total_sum_item = models.DecimalField(
         verbose_name='Сумма',
         default=0,
         max_digits=10,
         decimal_places=2,
     )
-    
+    @property
     def total_price(self):
-        self.price_sum = self.quantity * self.product.price
+        self.total_sum_item = self.quantity * self.product.price
         super().save()
-        return self.price_sum
+        return self.total_sum_item
 
 
     def __str__(self):
-        return f'CartItem # {self.pk} {self.product.name_book} quantity {self.quantity} sum {self.price_sum}'
+        return f'{self.pk}'
 
 
 class Order(models.Model):
