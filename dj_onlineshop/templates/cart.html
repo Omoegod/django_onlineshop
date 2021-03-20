@@ -6,28 +6,37 @@
 
 {% block main %}
 <h1>Корзина</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Товар</th>
-            <th scope="col">Цена</th>
-            <th scope="col">Количество</th>
-            <th scope="col">Сумма</th>
-        </tr>    
-    </thead>
-    {% for product_item in object.cart_item.all %}
-        <tr>
-            <td>{{ product_item.product.name_book }}</td>
-            <td>{{ product_item.product.price }}</td>
-            <td><input type="number" name="" min='0' value="{{ product_item.quantity }}"></td>
-            <td>{{ product_item.price_sum }}</td>
-        </tr>    
-{% endfor %}
-        <tr>
-            <td colspan="3">Итоговая сумма</td>
-            <td colspan="3">Итоговая сумма</td>
-        </tr>
-</table>
+
+<form action="{% url 'cart:recalculate-cart' %}" method="GET">
+<button type="submit" name="btn" class="btn btn-success btn btn-block" role="button" value="recalculate">Обновить корзину</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Товар</th>
+                <th scope="col"></th>
+                <th scope="col">Цена</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Сумма</th>
+            </tr>    
+        </thead>
+        {% for product_item in object.products_item.all %}
+            <tr>
+                <td><img class="img-fluid img-thumbnail" width="150" src="{{ product_item.product.photo.url }}" alt="Card image cap"></td>
+                <td>{{ product_item.product.name_book }}</td>
+                <td>{{ product_item.product.price }}</td>
+                <td><input type="number" name="product_item_{{ product_item.pk }}" min='0' value="{{ product_item.quantity }}"></td>
+                <td>{{ product_item.total_price }}</td>
+            </tr>    
+    {% endfor %}
+            <tr>
+                <td colspan="4">Итоговая сумма</td>
+                <td colspan="4">{{ object.total_sum }}</td>
+            </tr>
+    </table>
+    
+
+</form>
+    <a href="{% url 'cart:checkout' %}"><button type="submit" name="btn" class="btn btn-info btn btn-block" role="button" value="">Оформить заказ</button></a>
 
 {% endblock main %}
      

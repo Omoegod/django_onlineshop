@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
+{% load profile_tools %}
 
 {% block title %} 
 {{ page_title }} 
 {% endblock title %}
 
 {% block main %}
-    <h1>Author name {{ object.name_author }}</h1>
-    <a href="{% url 'authors-list' %}">All authors</a><br>
-    {{ object.descriptions_author }} <br>
-
+    
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+    
+    <a href="{% url 'authors-list' %}"><button type="button" class="btn btn-info btn btn-block" role="button">Вернуться к авторам</button></a><br>
+    <h1> <p class="text-center">{{ object.name_author }}</p></h1>
+    <hr>
+    <h4><p class="text-center"> {{ object.descriptions_author }} </p></h4><br>
+            {% if request.user|has_group:"Managers" %}    
+                <a href="{% url 'author-update' author.pk %}"><button type="button" class="btn btn-success btn btn-block" role="button">Редактировать</button></a>
+                <a href="{% url 'author-delete' author.pk %}"><button type="button" class="btn btn-danger btn btn-block" role="button">Удалить</button></a>   
+            
+            {% endif %}
+        
+  </div>
+  </div>
+  </div>
 
 
 {% endblock main %}

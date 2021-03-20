@@ -39,18 +39,26 @@ class ProductUpdate(PermissionRequiredMixin, UpdateView):
     
 
 class FilterProduct(DetailView):
-    model = Product, Author
-    # template_name = 'product/product_filter_author.html'
+    model = Product
     template_name = 'product/product_filter_genre.html'
 
     def get(self, request):
-        # author_id = self.request.GET.get('author')
-        # sort_author = Product.objects.filter(author_book=author_id)   
         genre_id = self.request.GET.get('genre')
         sort_genre = Product.objects.filter(genre_book=genre_id)   
         context = {
-            # 'sort_author':sort_author,            
             'sort_genre':sort_genre,            
+        }   
+        return render(request, self.template_name, context)
+
+class FilterAuthor(DetailView):
+    model = Product
+    template_name = 'references/author_filter.html'
+
+    def get(self, request):
+        author_id = self.request.GET.get('author')
+        sort_author = Product.objects.filter(author_book=author_id)   
+        context = {
+            'sort_author':sort_author,            
         }   
         return render(request, self.template_name, context)    
 

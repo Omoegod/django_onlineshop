@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from references import forms
 from references.models import Author, Genre 
 from product.models import Product
-
+ 
 
 
 # Create your views here.
@@ -20,9 +20,18 @@ class HomePage(TemplateView):
             'category':category,
         }   
         return render(request, self.template_name, context)
+ 
     
 class AuthorList(ListView):
     model = Author
+    template_name = 'references/author_list.html'
+    def get(self, request):
+        category = Author.objects.all()
+        context = {
+            'category':category,
+        }   
+        return render(request, self.template_name, context)
+
 
 class AuthorDetail(DetailView):
     model = Author

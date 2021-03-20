@@ -2,7 +2,8 @@ from django import forms
 from references.models import Author, Genre
 from django.db.models import fields
 
-
+class SearchForm(forms.Form):
+    query = forms.CharField()
                        
 class AuthorFormCreate(forms.ModelForm):
     class Meta:

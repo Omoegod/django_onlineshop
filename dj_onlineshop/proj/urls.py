@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from references import views
+from product.views import FilterAuthor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('cart/', include('order.urls', namespace='cart')),
     path('authors/', views.AuthorList.as_view(), name='authors-list'),
+    path('authors/filter/', FilterAuthor.as_view(), name='author-filter'),
     path('author/<int:pk>/', views.AuthorDetail.as_view(), name='author-detail'),
     path('author-delete/<int:pk>/', views.AuthorDelete.as_view(), name='author-delete'),
     path('author-update/<int:pk>/', views.AuthorUpdate.as_view(), name='author-update'),
@@ -33,5 +35,6 @@ urlpatterns = [
     path('genre-delete/<int:pk>/', views.GenreDelete.as_view(), name='genre-delete'),
     path('genre-update/<int:pk>/', views.GenreUpdate.as_view(), name='genre-update'),
     path('genre-create/', views.GenreCreate.as_view(), name='genre-create'),
+
     
 ]

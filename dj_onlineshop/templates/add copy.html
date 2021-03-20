@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th scope="col">Товар</th>
+                <th scope="col"></th>
                 <th scope="col">Цена</th>
                 <th scope="col">Количество</th>
                 <th scope="col">Сумма</th>
@@ -18,6 +19,7 @@
         </thead>
         {% for product_item in object.products_item.all %}
             <tr>
+                <td><img class="img-fluid img-thumbnail" width="150" src="{{ product_item.product.photo.url }}" alt="Card image cap"></td>
                 <td>{{ product_item.product.name_book }}</td>
                 <td>{{ product_item.product.price }}</td>
                 <td><input type="number" name="product_item_{{ product_item.pk }}" min='0' value="{{ product_item.quantity }}"></td>
@@ -25,8 +27,8 @@
             </tr>    
     {% endfor %}
             <tr>
-                <td colspan="3">Итоговая сумма</td>
-                <td colspan="3">{{ object.total_sum }}</td>
+                <td colspan="4">Итоговая сумма</td>
+                <td colspan="4">{{ object.total_sum }}</td>
             </tr>
     </table>
     <button type="submit" name="btn" class="btn btn-success" value="recalculate">Обновить корзину</button>

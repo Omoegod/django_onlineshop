@@ -25,7 +25,7 @@
                 <h6>{{ product.author_book }}</h6>
                 <h5>{{ product.price }} руб.</h5>
                 <h5>{{ product.availability }}</h5>
-                <a href="#">
+                <a href="{% url 'cart:add-to-cart' %}?product={{ product.pk }}">
                   <button class="btn btn-primary">Добавить в корзину</button>
                 </a>
                 {% if request.user|has_group:"Managers" %}
