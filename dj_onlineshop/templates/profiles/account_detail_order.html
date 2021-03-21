@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+{{ page_title }} 
+{% endblock title %}
+
+{% block main %}
+<div class="container emp-profile">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="profile-head">
+                        <h1>
+                            Заказы
+                        </h1>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="{% url 'profile' user.pk %}" role="tab" aria-controls="home" aria-selected="true">Инфо</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="{% url 'cart:order-list' %}" role="tab" aria-controls="profile" aria-selected="false">Заказы</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ <div class="row">
+        <div class="col-md-12">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="row">Номер заказа</th>
+                    <th scope="row">Адрес</th>
+                    <th scope="row">Сумма</th>
+                    <th scope="row">Дата заказа</th>
+                    <th scope="row">Статус заказа</th>
+                    <th scope="row">Действия с заказом</th>
+                </tr>
+                </thead>
+                {% for order in category %}
+                <tr>
+                    <th scope="row">{{ order.pk }}</th>
+                    <td>{{ order.address }}</a></td>
+                    <td>{{ order.total_sum_order }}</td>
+                    <td>{{ order.created }}</td>
+                    <td>{{ order.actions }}</td>
+                    <td><a href="{% url 'cart:order-update' order.pk %}" class="btn btn-outline-secondary">Изменить статус</a></td>
+                </tr>
+                {% endfor %}
+        </table>
+                        
+                </div>
+            </div>
+        </div>
+    </div>              
+</div>
+ 
+
+{% endblock main %}

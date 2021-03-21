@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
-from django.views.generic import DetailView, RedirectView, View, UpdateView
+from django.views.generic import DetailView, RedirectView, View, UpdateView, ListView
 from order.models import Cart, CartItem, Order
 from product.models import Product
 from profiles.models import Profile
-from order import utils
+from order import utils, forms
 # Create your views here.
 
 
@@ -65,31 +65,55 @@ class CheckOutView(UpdateView):
     model = Order
     template_name = 'checkout.html'
     fields = ('customer_name', 'address', 'phone_number')
-    success_url = reverse_lazy('home')   
-    
-    def get_object(self):
-        current_cart_pk = self.request.session.get('current_cart_pk')
-        current_cart = Cart.objects.filter(pk = current_cart_pk).first()   
-        if current_cart_pk:
-            cart = Cart.objects.get(pk=current_cart_pk)
-            try:
-                current_order_pk = cart.order.pk
-            except:
-                current_order_pk = None
-        order_item, created = Order.objects.get_or_create(
-            pk = current_order_pk,
-            defaults = {
-                'cart':cart,
+    success_url = reverse_lazy('home') 
+
+    def get_object(self, *args, **kwargs):
+        order_pk = self.request.GET.get('order')
+        current_cart_pk = self.request.session['current_cart_pk']
+        if not order_pk:
+            current_cart = Cart.objects.filter(pk = current_cart_pk).first()
+            user_name = self.request.user
+            if user_name.is_anonymous:
+                user_name = None
+            order, created = Order.objects.get_or_create(
+                cart = current_cart,
+                username = user_name,
+                defaults = {   
                 'customer_name': 'Введите ваше имя',
                 'address' : 'Введите ваш адрес',
                 'phone_number' : '+375',
                 'total_sum_order' : current_cart.total_sum
-             }
-        )
-        return order_item            
+             })
+            return order        
+        else: 
+            order = Order.objects.get(pk = order_pk)
+            return order          
     
     def get_success_url(self):
         url = super().get_success_url()
         del(self.request.session['current_cart_pk'])
         return url
+
+class OrderListInProfile(ListView):
+    model = Order
+    template_name = 'profiles/account_detail_order.html'
+    
+    def get(self, request):
+        user_name = self.request.user
+        category = Order.objects.filter(username=user_name)
+        context = {
+            'category':category,
+        }   
+        return render(request, self.template_name, context)
+
+
+class OrderDetail(DetailView):
+    model = Order
+    template_name = 'profiles/order_detail.html'
+
+class StatusOrderUpdate(UpdateView):
+    model = Order
+    form_class = forms.OrderUpdate
+    template_name = 'profiles/order_update.html'
+    success_url = reverse_lazy('cart:order-list')
 

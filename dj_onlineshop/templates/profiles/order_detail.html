@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+{{ page_title }} 
+{% endblock title %}
+
+{% block main %}
+    <h1>Book name {{ object.cart }}</h1>
+    {{ object.username }} <br>
+    {{ object.customer_name }} <br>
+    {{ object.address }} <br>
+    {{ object.phone_number }} <br>
+    {{ object.total_sum_order }} <br>
+    {{ object.actions }} <br>
+    {{ object.created }} <br>
+    {{ object.updated }} <br>  
+{% endblock main %}

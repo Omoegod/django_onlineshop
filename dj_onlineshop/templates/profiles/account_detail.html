@@ -7,17 +7,17 @@
 {% block main %}
 <div class="container emp-profile">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="profile-head">
                         <h1>
                             Профиль {{ object.username }}
                         </h1>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Инфо</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="{% url 'profile' user.pk %}" role="tab" aria-controls="home" aria-selected="true">Инфо</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Заказы</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'cart:order-list' %}" role="tab" aria-controls="profile" aria-selected="false">Заказы</a>
                     </li>
                 </ul>
             </div>

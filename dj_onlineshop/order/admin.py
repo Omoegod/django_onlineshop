@@ -20,9 +20,6 @@ class CartItemAdmin(admin.ModelAdmin):
     class Meta:
         model = models.CartItem
 
-# class OrderItemAdmin(admin.TabularInline):
-#     model = models.OrderItem
-#     raw_id_fields = ['product']
 
 class OrderAdmin(admin.ModelAdmin): 
     list_display = [
@@ -31,6 +28,7 @@ class OrderAdmin(admin.ModelAdmin):
         'address',
         'phone_number',
         'total_sum_order',
+        'actions',
         'created',
         'updated']
     # inlines = [OrderItemAdmin]
