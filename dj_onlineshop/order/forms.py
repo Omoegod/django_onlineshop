@@ -5,3 +5,4 @@ class OrderUpdate(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['actions']                       
+

@@ -9,7 +9,7 @@ from references.models import Author
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 9
+    paginate_by = 21
     
 
 class ProductDetail(DetailView):
